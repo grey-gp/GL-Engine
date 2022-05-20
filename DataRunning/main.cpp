@@ -14,6 +14,10 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
+
 #include "Mesh.h"
 
 
@@ -142,6 +146,14 @@ int main()
 	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "A Test", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init("#version 330");
+
 	gladLoadGL();
 	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	GLuint renderingProgram = createShaderProgram("vertShader.glsl", "fragmentShader.glsl");
@@ -199,15 +211,27 @@ int main()
 	glm::mat4 lightTransform = glm::mat4(1.f);
 	lightTransform = glm::translate(lightTransform, glm::vec3(0.f, 1.0f, 1.0f));
 
+	ImVec4 monkeeColor = ImVec4(1.0f, 0.5f, 0.31f, 1.f);
+
 	while (!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.0, 0.0, 0.0, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
+		ImGui::Begin("Monkee Color");
+		ImGui::ColorEdit3("Monkee Color", (float*)&monkeeColor);
+		ImGui::End();
+
+		ImGui::EndFrame();
+
 		glUseProgram(renderingProgram);
 		unsigned int objectColorLoc = glGetUniformLocation(renderingProgram, "objectColor");
 		unsigned int lightColorLoc = glGetUniformLocation(renderingProgram, "lightColor");
-		glUniform3f(objectColorLoc, 1.0f, 0.5f, 0.31f);
+		glUniform3f(objectColorLoc, monkeeColor.x, monkeeColor.y, monkeeColor.z);
 		glUniform3f(lightColorLoc, 1.0f, 1.0f, 1.0f);
 
 		meshes[0].Draw();
@@ -219,9 +243,16 @@ int main()
 
 		lightMesh.Draw();
 
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 
 	glDeleteProgram(renderingProgram);
 	glfwDestroyWindow(window);

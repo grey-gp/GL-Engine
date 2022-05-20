@@ -78,13 +78,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\grey\source\C++ Dev Libraries\OpenGL Template\include;C:\Users\grey\source\C++ Dev Libraries\assimp-master\include;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\include;$(IncludePath)</IncludePath>
-    <SourcePath>$(SourcePath)</SourcePath>
+    <IncludePath>C:\Users\grey\source\C++ Dev Libraries\OpenGL Template\include;C:\Users\grey\source\C++ Dev Libraries\assimp-master\include;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\include;C:\Users\grey\source\C++ Dev Libraries\imgui-master;C:\Users\grey\source\C++ Dev Libraries\imgui-master\backends;$(IncludePath)</IncludePath>
+    <SourcePath>$(SourcePath);C:\Users\grey\source\C++ Dev Libraries\imgui-master;C:\Users\grey\source\C++ Dev Libraries\imgui-master\backends</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\grey\source\C++ Dev Libraries\OpenGL Template\include;C:\Users\grey\source\C++ Dev Libraries\assimp-master\include;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\include;$(IncludePath)</IncludePath>
-    <SourcePath>C:\Users\grey\source\C++ Dev Libraries\OpenGL Template\source;$(SourcePath)</SourcePath>
+    <IncludePath>C:\Users\grey\source\C++ Dev Libraries\OpenGL Template\include;C:\Users\grey\source\C++ Dev Libraries\assimp-master\include;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\include;C:\Users\grey\source\C++ Dev Libraries\imgui-master;C:\Users\grey\source\C++ Dev Libraries\imgui-master\backends;$(IncludePath)</IncludePath>
+    <SourcePath>C:\Users\grey\source\C++ Dev Libraries\OpenGL Template\source;$(SourcePath);C:\Users\grey\source\C++ Dev Libraries\imgui-master;C:\Users\grey\source\C++ Dev Libraries\imgui-master\backends</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,7 +124,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\grey\source\C++ Dev Libraries\OpenGL Template\lib;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\lib\Debug;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\bin\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\grey\source\C++ Dev Libraries\OpenGL Template\lib;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\lib\Debug;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\bin\Debug;C:\Users\grey\source\C++ Dev Libraries\imgui-master;C:\Users\grey\source\C++ Dev Libraries\imgui-master\backends;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -142,11 +142,17 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\grey\source\C++ Dev Libraries\OpenGL Template\lib;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\lib\Debug;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\bin\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\grey\source\C++ Dev Libraries\OpenGL Template\lib;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\lib\Debug;C:\Users\grey\source\C++ Dev Libraries\assimp-master\build\bin\Debug;C:\Users\grey\source\C++ Dev Libraries\imgui-master;C:\Users\grey\source\C++ Dev Libraries\imgui-master\backends;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\C++ Dev Libraries\imgui-master\backends\imgui_impl_glfw.cpp" />
+    <ClCompile Include="..\..\..\..\C++ Dev Libraries\imgui-master\backends\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\..\..\..\C++ Dev Libraries\imgui-master\imgui.cpp" />
+    <ClCompile Include="..\..\..\..\C++ Dev Libraries\imgui-master\imgui_draw.cpp" />
+    <ClCompile Include="..\..\..\..\C++ Dev Libraries\imgui-master\imgui_tables.cpp" />
+    <ClCompile Include="..\..\..\..\C++ Dev Libraries\imgui-master\imgui_widgets.cpp" />
     <ClCompile Include="..\..\..\..\C++ Dev Libraries\OpenGL Template\source\glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
